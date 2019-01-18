@@ -47,14 +47,14 @@
 		
 		<!-- 表格 -->
 		<el-table ref="multipleTable" :data="list" :height="height"  fit highlight-current-row v-loading="listLoading" element-loading-text="拼命加载中">
-			<el-table-column align="center" label='住户名' prop="userName"></el-table-column>
-			<el-table-column align="center" label="电话" prop="phone"></el-table-column>
+			<el-table-column align="center" label='住户名' prop="userName" width="130"></el-table-column>
+			<el-table-column align="center" label="电话" prop="phone" width="130"></el-table-column>
 		    <el-table-column align="center" label="小区" prop="community"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
 			<el-table-column align="center" label="采集时间" prop="collectionTime"></el-table-column>
 			<el-table-column align="center" label="计费方式" prop="billingType"></el-table-column>
-			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure"></el-table-column>
-			<el-table-column align="center" label="累计用气量/L" prop="allGasMeasure"></el-table-column>
+			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure" width="110"></el-table-column>
+			<el-table-column align="center" label="累计用气量/L" prop="allGasMeasure" width="110"></el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
 					<el-button v-if="permBtn.group_check" class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>

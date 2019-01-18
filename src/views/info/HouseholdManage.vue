@@ -55,17 +55,18 @@
 		
 		<!-- 表格 -->
 		<el-table ref="multipleTable" :data="list" :height="height"  fit highlight-current-row v-loading="listLoading" element-loading-text="拼命加载中">
-			<el-table-column align="center" label='住户名' prop="userName"></el-table-column>
-			<el-table-column align="center" label="住户编号" prop="userNo"></el-table-column>
-			<el-table-column align="center" label="电话" prop="phone"></el-table-column>
-		    <el-table-column align="center" label="小区" prop="community"></el-table-column>
+			<el-table-column align="center" label='住户名' prop="name" width="130"></el-table-column>
+			<el-table-column align="center" label="住户编号" prop="householdCode"></el-table-column>
+			<el-table-column align="center" label="电话" prop="phone" width="100"></el-table-column></el-table-column>
+		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
+			<el-table-column align="center" label="身份证号" prop="idNumber"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
 			<el-table-column align="center" label="表类型" prop="gasMeterType"></el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
-					<el-button v-if="permBtn.group_check" class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
-					<el-button v-if="permBtn.group_modify" class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
-					<el-button v-if="permBtn.group_delete" class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
+					<el-button  class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
+					<el-button  class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
+					<el-button  class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
 				</template>
 			</el-table-column>
 		</el-table>
