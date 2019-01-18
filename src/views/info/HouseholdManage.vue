@@ -64,7 +64,11 @@
 		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
 			<el-table-column align="center" label="身份证号" prop="idNumber"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode">--</el-table-column>
-			<el-table-column align="center" label="表类型" prop="gasMeterType"></el-table-column>
+			<el-table-column align="center" label="表类型" >
+				<template slot-scope="scope">
+					<div v-if="!scope.row.gasMeterType">--</div>
+				</template>
+			</el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
 					<el-button  class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
@@ -288,29 +292,6 @@
 							<el-form-item label="燃油类别：">
 								<strong>{{carInfo.powerTypeName}}</strong>
 							</el-form-item>
-							
-							
-						<!-- <el-form-item label="车辆品牌编码：">
-								<strong>{{carInfo.carBrand}}</strong>
-							</el-form-item>
-							<el-form-item label="车辆颜色编码：">
-								<strong>{{carInfo.carColor}}</strong>
-							</el-form-item>
-							<el-form-item label="车辆型号编码：">
-								<strong>{{carInfo.carModel}}</strong>
-							</el-form-item>
-							<el-form-item label="车牌颜色编码：">
-								<strong>{{carInfo.carPlateColor}}</strong>
-							</el-form-item>
-							<el-form-item label="部门编码：">
-								<strong>{{carInfo.deptId}}</strong>
-							</el-form-item>
-							<el-form-item label="燃油类别编码：">
-								<strong>{{carInfo.powerType}}</strong>
-							</el-form-item>
-							<el-form-item label="车辆用途编码：">
-								<strong>{{carInfo.useType}}</strong>
-							</el-form-item>	 -->
 					</el-col>
 				</el-row>
 			</el-form>
@@ -527,7 +508,7 @@ import { debug } from 'util';
 				deptNames: "", //部门显示的名称
 				//列表查询参数
 				listQuery: {
-					iDisplayLength: 5,
+					iDisplayLength: 2,
 					iDisplayStart: 0,
 					name: "",
 					idNumber:"",
@@ -747,7 +728,6 @@ import { debug } from 'util';
 				//调用接口
 				let param = JSON.parse(JSON.stringify(vm.listQuery));
 		        vm.$instance.post("/proxy/household/queryList", param).then(res =>{	
-					debugger
 					vm.listLoading = false;
 		          	if(res.status == 200){
 						  
