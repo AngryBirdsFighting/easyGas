@@ -47,14 +47,14 @@
 		
 		<!-- 表格 -->
 		<el-table ref="multipleTable" :data="list" :height="height"  fit highlight-current-row v-loading="listLoading" element-loading-text="拼命加载中">
-			<el-table-column align="center" label='住户名' prop="userName" width="130"></el-table-column>
+			<el-table-column align="center" label='住户名' prop="name" width="130"></el-table-column>
 			<el-table-column align="center" label="电话" prop="phone" width="130"></el-table-column>
-		    <el-table-column align="center" label="小区" prop="community"></el-table-column>
+		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
-			<el-table-column align="center" label="采集时间" prop="collectionTime"></el-table-column>
+			<el-table-column align="center" label="采集时间" prop="curTimestamp"></el-table-column>
 			<el-table-column align="center" label="计费方式" prop="billingType"></el-table-column>
 			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure" width="110"></el-table-column>
-			<el-table-column align="center" label="累计用气量/L" prop="allGasMeasure" width="110"></el-table-column>
+			<el-table-column align="center" label="累计用气量/L" prop="totalVolume" width="110"></el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
 					<el-button v-if="permBtn.group_check" class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
@@ -526,7 +526,7 @@
 				},
 				//驾驶员列表查询参数
 				driverListQuery: {
-					iDisplayLength: 10,
+					iDisplayLength: 5,
 					iDisplayStart: 0,
 					driverName: '',
 					deptId: '',
@@ -760,16 +760,19 @@
 				debugger	
 				validate.isValidate(this, formName, (formData)=>{
 					if(formData.validates){
-						this.createSubmit();
+						const dateTime = this.$refs.dateTimePicker.dateTimePicker;
+						if(dateTime){
+							this.listQuery.startTime = dateTime[0];
+							this.listQuery.endTime = dateTime[1];
+						 this.getList()
+						}else{
+ Message.error({message:"请选择时间"});
+						}
+				     
 					}
 					this.isValidate.isOk = false;
 				},this.listQuery);
-				const dateTime = this.$refs.dateTimePicker.dateTimePicker
-				if(dateTime){
-					this.listQuery.startTime = dateTime[0];
-					this.listQuery.endTime = dateTime[1]
-				}
-				this.getList()
+				
 			},
 			//获取字典
 			getDictionaries() {
