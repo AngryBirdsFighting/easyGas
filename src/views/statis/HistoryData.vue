@@ -52,14 +52,22 @@
 		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
 			<el-table-column align="center" label="采集时间" prop="curTimestamp"></el-table-column>
-			<el-table-column align="center" label="计费方式" prop="billingType"></el-table-column>
-			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure" width="110"></el-table-column>
-			<el-table-column align="center" label="累计用气量/L" prop="totalVolume" width="110"></el-table-column>
+			<el-table-column align="center" label="计费方式" prop="billingType">
+					<template slot-scope="scope">
+					<div v-if="!scope.row.gasMeterType">--</div>
+				</template>
+			</el-table-column>
+			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure" width="110">
+							<template slot-scope="scope">
+					<div v-if="!scope.row.gasMeterType">--</div>
+				</template></el-table-column>
+			<el-table-column align="center" label="累计用气量/L" prop="totalVolume" width="110">
+			</el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
-					<el-button v-if="permBtn.group_check" class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
-					<el-button v-if="permBtn.group_modify" class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
-					<el-button v-if="permBtn.group_delete" class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
+					<el-button class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
+					<el-button class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
+					<el-button class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -518,7 +526,7 @@
 				deptNames: "", //部门显示的名称
 				//列表查询参数
 				listQuery: {
-					iDisplayLength: 5,
+					iDisplayLength: 10,
 					iDisplayStart: 0,
 					barCode: "",
 					startTime:"",
@@ -978,12 +986,24 @@
 			},
 			//查看
 			check(index, row) {
+					this.$message({
+			          	message: '待开发',
+			          	type: 'warning',
+			          	duration: '1500'
+			        });
+		    		return;
 				this.carInfo = null;
 				this.getCarData(row.carId);
 				this.checkFormVisible = true;
 			},
 			//删除
 			handleDelete(index, row) {
+				this.$message({
+			          	message: '待开发',
+			          	type: 'warning',
+			          	duration: '1500'
+			        });
+		    		return;
 				if(row.driverName != null || row.equImei != null){
 					this.$message({
 			          	message: '此车辆被绑定，不能删除，请解绑后进行删除！',
@@ -1030,6 +1050,12 @@
 			},
 			//修改获取信息
 			handleEdit(index, row) {
+				this.$message({
+			          	message: '待开发',
+			          	type: 'warning',
+			          	duration: '1500'
+			        });
+		    		return;
 			    for (var i in this.editCar){
 					this.editCar[i] = ""
 				};

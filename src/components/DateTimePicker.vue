@@ -64,3 +64,8 @@
 		}
 	};
 </script>
+<style lang="scss" >
+.el-range-separator{
+	line-height: 24px!important;
+}
+</style>
