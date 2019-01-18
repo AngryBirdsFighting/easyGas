@@ -62,7 +62,7 @@ const user = {
 			return new Promise((resolve, reject) => {
 				console.log('登录入参：', userInfo);
 				//调用接口
-				instance.post('/proxy/auth/login', userInfo).then(res => {
+				instance.post('https://www.easy-mock.com/mock/5c412008d263515b81b18c75/easygas/auth/login', userInfo).then(res => {
 					
 					if(res.status == 200 && res.data.success) {
 						Cookies.set('userName', userInfo.account, {expires: 14,path: ''}); //设置token
@@ -97,7 +97,7 @@ const user = {
 			params.userId = state.uid;
 			return new Promise((resolve, reject) => {
 				//const urls = [api.findCurUser, api.menu];
-				const urls = ['/proxy/currentUser', '/proxy/auth/findMenuPerms'];
+				const urls = ['https://www.easy-mock.com/mock/5c412008d263515b81b18c75/easygas/currentUser', 'https://www.easy-mock.com/mock/5c412008d263515b81b18c75/easygas/auth/findMenuPerms'];
 				const requests = urls.map(makeRequest);
 				// 把指定的 url 转变成 axios 请求，返回的是 Promise 对象
 				function makeRequest(url) {

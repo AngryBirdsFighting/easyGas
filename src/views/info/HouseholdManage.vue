@@ -18,8 +18,11 @@
 				<el-form-item label="住户姓名">
 					<el-input v-model="listQuery.name" placeholder="请输入用户名" clearable></el-input>
 				</el-form-item>
-				<el-form-item label="住户电话">
-					<el-input v-model="listQuery.phone" placeholder="请输入电话" clearable></el-input>
+				<el-form-item label="身份证号">
+					<el-input v-model="listQuery.idNumber" placeholder="请输入电话" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="住户编码">
+					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编码" clearable></el-input>
 				</el-form-item>
 				<!-- <el-form-item label="小区">
 					<el-select v-model="listQuery.powerType" clearable placeholder="请选择燃油类型">
@@ -60,7 +63,7 @@
 			<el-table-column align="center" label="电话" prop="phone" width="100"></el-table-column></el-table-column>
 		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
 			<el-table-column align="center" label="身份证号" prop="idNumber"></el-table-column>
-			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
+			<el-table-column align="center" label="条形码" prop="barCode">--</el-table-column>
 			<el-table-column align="center" label="表类型" prop="gasMeterType"></el-table-column>
 			<el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
@@ -437,6 +440,7 @@
 	import Import from '../../components/Import'; //导入弹框组件
 	import DepartSelect from '../../components/DepartSelect';
 	import Pagination from '../../components/Pagination';
+import { debug } from 'util';
 
 	export default {
 		components: {
@@ -523,10 +527,11 @@
 				deptNames: "", //部门显示的名称
 				//列表查询参数
 				listQuery: {
-					iDisplayLength: 10,
+					iDisplayLength: 5,
 					iDisplayStart: 0,
-					phone: "",
 					name: "",
+					idNumber:"",
+					householdCode: ""
 				},
 				//驾驶员列表查询参数
 				driverListQuery: {
@@ -741,7 +746,8 @@
 				vm.listLoading = true;
 				//调用接口
 				let param = JSON.parse(JSON.stringify(vm.listQuery));
-		        vm.$instance.get("/proxy/info/findHouseholdList", {params:param}).then(res =>{	
+		        vm.$instance.post("/proxy/household/queryList", param).then(res =>{	
+					debugger
 					vm.listLoading = false;
 		          	if(res.status == 200){
 						  

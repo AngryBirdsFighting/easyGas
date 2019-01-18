@@ -11,14 +11,14 @@
 		
 		<!-- 搜索条件 -->
 		<div class="filter-container">
-			<el-form :inline="true" :model="listQuery" class="demo-form-inline">
+			<el-form :inline="true" :rules="rulesSearch" :model="listQuery"  ref="searchForm" class="demo-form-inline">
 				<!-- <el-form-item label="条形码">
 					<el-input v-model="listQuery.carNum" placeholder="请输入车牌号" clearable></el-input>
 				</el-form-item> -->
-				<el-form-item label="住户编号">
+				<!-- <el-form-item label="住户编号">
 					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编号" clearable></el-input>
-				</el-form-item>
-				<el-form-item label="条形码">
+				</el-form-item> -->
+				<el-form-item label="条形码"  prop="barCode">
 					<el-input v-model="listQuery.barCode" placeholder="请输入条形码" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="上报时间" >
@@ -26,7 +26,7 @@
 				</el-form-item>
 				
 				<el-form-item>
-					<el-button class="filter-item btnColor" type="primary" icon="el-icon-search" @click="search">查询</el-button>
+					<el-button class="filter-item btnColor" type="primary" icon="el-icon-search" @click=" search('searchForm')">查询</el-button>
 				</el-form-item>
 				<el-form-item>
 					<el-button v-if="permBtn.car_add" class="filter-item btnColor" type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
@@ -518,9 +518,8 @@
 				deptNames: "", //部门显示的名称
 				//列表查询参数
 				listQuery: {
-					iDisplayLength: 10,
+					iDisplayLength: 5,
 					iDisplayStart: 0,
-					householdCode: "",
 					barCode: "",
 					startTime:"",
 					endTime: ""
@@ -609,7 +608,13 @@
 					useType: "",
 				},
 				//新增编辑数据校验
-				rulesAdd: {
+				rulesSearch: {
+					barCode: [
+						{ required: true, message: '请输入条形码', trigger: 'change' }
+					],
+					
+				},
+					rulesAdd: {
 					carBrand: [
 						{ required: true, message: '请选择车辆品牌', trigger: 'change' }
 					],
@@ -738,8 +743,8 @@
 				vm.listLoading = true;
 				//调用接口
 				let param = JSON.parse(JSON.stringify(vm.listQuery));
-		        vm.$instance.get("/proxy/statis/findHistoryData", {params:param}).then(res =>{	
-					vm.listLoading = false;
+		        vm.$instance.post("/proxy/data/queryHistoryData", param).then(res =>{	
+					vm.listLoading = false
 		          	if(res.status == 200){
 						  
 		                vm.list = res.data.data;
@@ -751,7 +756,14 @@
 		        	vm.listLoading = false;
 		        });
 			},
-			search(){
+			search(formName){
+				debugger	
+				validate.isValidate(this, formName, (formData)=>{
+					if(formData.validates){
+						this.createSubmit();
+					}
+					this.isValidate.isOk = false;
+				},this.listQuery);
 				const dateTime = this.$refs.dateTimePicker.dateTimePicker
 				if(dateTime){
 					this.listQuery.startTime = dateTime[0];
