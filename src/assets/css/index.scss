@@ -1,0 +1,801 @@
+/**
+ * @Author:      qinbb
+ * @DateTime:    2018-01-31 16:58:09
+ * @Description: 全局样式  支持import引入其他的样式
+ */
+@import './btn.scss';
+@import './element-ui.scss';
+@import "./mixin.scss";
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+body, ul, li, h1, h2, h3, h4, p, div, img, input {
+    margin: 0;padding: 0;line-height: normal;font-family: "微软雅黑";
+}
+ul, li {list-style: none;}
+img {border: 0;vertical-align: middle;}
+input,textarea,button,select{outline: none;border: none;}
+lable{
+    color: #333333;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+html {
+  box-sizing: border-box;
+}
+.el-dialog__headerbtn .el-dialog__close{
+    color: #fff;
+    &:hover{
+        color: #e8281f;
+    }
+}
+.el-dialog__body{
+    padding: 20px 20px 0 20px;
+}
+.el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange .el-icon-date{
+    left: 0;
+}
+.el-date-editor .el-range-separator{
+    width: 24px;
+    line-height: 24px;
+}
+.el-date-editor .el-range-input{
+    width: 120px;
+}
+.el-table{
+    border-left: 1px solid #ebeef5;
+	border-right: 1px solid #ebeef5;
+}
+.el-table .cell{
+    padding: 0 !important;
+}
+.el-form-item__content, .el-form-item__label{
+    line-height: 30px !important;
+}
+.el-table td{
+    padding: 8px 0;
+    border-right: none !important;
+}
+
+//表格样式
+.el-table__header-wrapper table{
+    thead th{
+        border-top: 1px solid #e4e7ea;
+        border-right: none !important;
+        div{
+            color: #484848 !important;
+            line-height: 22px !important;
+        }
+    }
+    tbody{
+        td{
+            border-right: none !important;
+            color: #666666;
+        }
+    }
+}
+.el-table td{
+    border-bottom: 1px solid #e4e7ea;
+}
+.el-table tbody {
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                font-size: 12px;
+            }
+        }
+    }
+}
+.el-table th.is-leaf{
+    border-bottom: 2px solid #e4e7ea;
+}
+tbody tr:nth-child(odd){
+    background: #f7f9ff;
+}
+//分页样式
+.pagination-container{
+    text-align: right;
+    margin-top: 20px;
+}
+.el-pagination__editor{
+    border: none !important;
+    padding: 0 !important;
+}
+.el-pager li.active{
+    // border-color: #67d3e0 !important;
+    // background-color: #67d3e0 !important;
+}
+.el-date-editor--daterange.el-input__inner{
+    width: 285px;
+}
+.el-date-editor .el-range-input{
+    width: 100px;
+}
+//树样式
+.select-tree-input{
+    width: 100% !important;
+    input{
+        background: #f7f7f7;
+    }
+}
+.tree-box{
+    width: 13%;
+    background: #fff;
+    padding: 10px;
+    .tree-title{
+        display: inline-block;
+        width: 100%;
+        @include height(24px);
+        .imgs-type{
+            display: inline-block;
+            @include height(24px);
+            position: relative;
+            img{
+                cursor: pointer;
+            }
+            div{
+                position: absolute;
+                @include borderRadius;
+                top: -30px;
+                z-index: 1002;
+                right: 22px;
+                padding-top: 2px;
+                @include size(104px, 91px);
+                background: url(../img/bgBox.png);
+                li{
+                    @include height(17px);
+                    padding-left: 20px;
+                    font-size: 12px;
+                    img{
+                        margin-right: 10px;
+                        width: 12px;
+                        height: 12px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+        
+    }
+    .tree-list{
+        overflow: auto;
+    }
+}
+
+//车辆树
+.custom-tree-node{
+    // flex: 1;
+    display: flex; 
+	align-items: center; 
+	justify-content: flex-start; 
+	font-size: 14px; 
+    padding-right: 8px;
+//  width: 90%;
+	@at-root & {
+		@media all and (max-width: 1400px)  {
+		    & {
+		        font-size: 12px;
+		    }
+		}
+	}
+    .car-img{
+        display: inline-block;
+        width: 17px;
+        height: 16px;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .strongTree {
+		display:inline-block;
+		vertical-align: middle;
+	}
+	i{
+	    display: inline-block;
+	    vertical-align: middle;
+	}
+}
+//车辆数选择框清除按钮
+.closeI{
+    position: absolute;
+    right: 25px;
+    top: 8px;
+    color: #c0c4cc;
+    cursor: pointer;
+}
+.caronline{background: url(../img/car-online.png) no-repeat center center;}/*在线*/
+.caroutline{background: url(../img/car-out.png) no-repeat center center;}/*离线*/
+.carstop{background: url(../img/car-stop.png) no-repeat center center;}/*怠速*/
+.cartip{background: url(../img/car-tip.png) no-repeat center center;}/*报警*/
+.carnoactive{background: url(../img/car-noactive.png) no-repeat center center;}/*未激活*/
+
+.mapCon{
+    width: 86%;
+    background: #fff;
+}
+
+//地图信息窗口样式
+.BMap_car_title{
+    border-radius: 6px;
+    background-color: #586FCC;
+    color: #fff;
+    padding: 3px 8px;
+    margin-right: 10px;
+    vertical-align: middle;
+
+    display: inline-block;  /*将span当做块级元素对待*/
+    max-width: 100px;  /*限制宽度*/
+    overflow: hidden;  /*超出宽度部分隐藏*/
+    text-overflow: ellipsis;  /*超出部分以点号代替*/
+    white-space: nowrap;
+}
+
+.mapDialog {
+    display: block;
+    padding-bottom: 8px;
+    font-size: 14px;
+    color: #000;
+}
+
+.BMap_pop>img{
+    display: none;
+}
+
+.BMap_pop div:nth-child(1){  
+    border-radius:7px 0 0 0;  
+}  
+.BMap_pop div:nth-child(3) div{  
+    border-radius: 7px;  
+}  
+.BMap_pop div:nth-child(5) div{
+    border-radius: 7px; 
+}
+.BMap_pop div:nth-child(7) div{
+    border-radius: 7px; 
+}
+.BMap_pop div:nth-child(5){  
+    border-radius: 0 0 0 7px;  
+}  
+.BMap_pop div:nth-child(7){  
+    border-radius: 0 0 7px 0;  
+} 
+
+/* 去掉地图左下角的百度LOGO */
+.anchorBL {
+    display: none
+}
+.selectCarTree-input{
+    margin-top: 0 !important;
+    float: left;
+    margin-right: 20px;
+    input{
+        background: #f7f7f7;
+        @include cursor;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .tree-box{
+        width: 15%;
+    }
+    .con{
+        width: 84%;
+    }
+}
+//时间组件
+.el-date-range-picker.has-sidebar{
+    width: 825px;
+}
+.allDate {
+    .el-date-editor .el-range-input{
+        width: 160px;
+    }
+    .el-date-editor .el-range-separator{
+        line-height: 24px;
+    }
+}
+
+//Tab切换样式
+.meun_tab{
+    margin-bottom: 10px;
+    .el-button{
+        padding: 12px 20px;
+        margin-left: 0;
+    }
+}
+.el-tabs__nav-scroll{
+    background: #f7f9ff;
+    border-bottom: 1px solid #f1f1f1;
+}
+.el-tabs--border-card{
+    box-shadow: none;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active{
+    background-color: #67d3e0;
+    color: #fff;
+}
+// 滚动条样式
+ /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+ ::-webkit-scrollbar  {  
+     width: 8px;  
+     height: 8px;  
+     background-color: #F5F5F5;  
+     cursor: pointer;
+ }  
+   
+ /*定义滚动条轨道 内阴影+圆角*/  
+ ::-webkit-scrollbar-track  {  
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+     border-radius: 10px;  
+     background-color: #F5F5F5;  
+ }  
+   
+ /*定义滑块 内阴影+圆角*/  
+ ::-webkit-scrollbar-thumb  {  
+     border-radius: 10px;  
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+     background-color: #B4B4B4;  
+ } 
+
+.date{
+    width: 160px !important;
+}
+.el-input__icon{
+    line-height: 30px;
+}
+.el-pager li.active{
+    color: #fff;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+.clear {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+/* 点击菜单中间的部分 淡入淡出的效果 start */
+.fade-enter-active{
+  -webkit-transition: all 0.2s;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition: all 0.2s;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition: all 0.2s;//css3 有些浏览器不支持 IE
+  -o-transition: all 0.2s;//css3 有些浏览器不支持 Opera
+  -webkit-transition-delay: 0.2s;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition-delay: 0.2s;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition-delay: 0.2s;//css3 有些浏览器不支持 IE
+  -o-transition-delay: 0.2s;//css3 有些浏览器不支持 Opera
+}
+
+.fade-leave-active{
+  -webkit-transition: all 0.2s;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition: all 0.2s;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition: all 0.2s;//css3 有些浏览器不支持 IE
+  -o-transition: all 0.2s;//css3 有些浏览器不支持 Opera
+}
+
+.fade-enter, .fade-leave-active{
+    opacity: 0;
+} 
+/* 点击菜单中间的部分 淡入淡出的效果 end */
+/* main-container全局样式  start*/
+.app-container {
+  min-height:inherit;//继承高度
+  margin: 70px 10px 10px 220px;
+  -webkit-transition: all .28s ease-out;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition: all .28s ease-out;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition: all .28s ease-out;//css3 有些浏览器不支持 IE
+  -o-transition: all .28s ease-out;//css3 有些浏览器不支持 Opera
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+}
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
+/* main-container全局样式  end*/
+
+.editor-container .CodeMirror {
+  height: 100%!important;
+}
+
+.wscn-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.sub-navbar {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  -webkit-transition: 600ms ease position;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition: 600ms ease position;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition: 600ms ease position;//css3 有些浏览器不支持 IE
+  -o-transition: 600ms ease position;//css3 有些浏览器不支持 Opera
+  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+  .subtitle {
+    font-size: 20px;
+    color: #fff;
+  }
+  &.draft {
+    background: #d0d0d0;
+  }
+  &.deleted {
+    background: #d0d0d0;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.publishedTag,
+.draftTag,
+.deletedTag {
+  color: #fff;
+  background-color: $panGreen;
+  line-height: 1;
+  text-align: center;
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
+.draftTag {
+  background-color: $yellow;
+}
+
+.deletedTag {
+  background-color: $red;
+}
+
+.input-label {
+  font-size: 14px;
+  color: #48576a;
+  line-height: 1;
+  padding: 11px 5px 11px 0;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+.no-marginLeft {
+  .el-checkbox {
+    margin: 0 20px 15px 0;
+  }
+  .el-checkbox+.el-checkbox {
+    margin-left: 0px;
+  }
+}
+
+.filter-container {
+    border: none;
+  padding-bottom: 10px;
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+}
+
+
+.multiselect {
+  line-height: 16px;
+}
+
+.multiselect--active {
+  z-index: 1000 !important;
+}
+
+.simplemde-container{
+  .editor-toolbar.fullscreen,.CodeMirror-fullscreen{
+    z-index: 1003;
+  }
+}
+
+//暂时性解决diolag 问题 
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}
+
+//弹出层样式
+.el-dialog__header{
+    padding: 10px 10px 10px 20px !important;
+    background: $HeaderBackgroundColor;
+}
+.el-dialog__title{
+    color: #fff !important;
+}
+.el-dialog__headerbtn{
+    top: 10px !important;
+    color: #fff !important;
+}
+.el-form-item__label{
+    text-align: right !important;
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                padding-right: 5px;
+            }
+        }
+    }
+}
+//搜索框样式
+.select-box{
+    width: 100%;
+    height: 80px;
+    background: antiquewhite;
+}
+.el-button--primary{
+    @include btnColor(#67d3e0, #758cdf);
+}
+
+//导入
+.import-box{
+    ul{
+        display: inline-block;
+        width: 100%;
+        padding: 0 25px;
+        p{
+           @include height(28px);
+           a{
+               color: #67d3e0;
+               text-decoration: underline;
+           } 
+        }
+        .import-tip{
+            color: #f52727;
+        }
+        li.fr{
+            display: inline-block;
+            @include size(120px,170px);
+            .el-upload-dragger{
+                @include size(120px,120px);
+            }
+            .el-upload-dragger .el-icon-upload{
+                margin: 20px 0 16px;
+            }
+        }
+    }
+}
+.sidebar-wrapper .el-menu{
+    border: none;
+}
+li.el-menu-item.is-active{
+    background: #2a425a !important;
+}
+
+
+//右键菜单样式
+.rightmenu {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1000;
+    background: #fff;
+    width: 120px;
+    border: 1px solid #dcdfe6;
+    border-bottom: none;
+    p {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        text-align: center;
+        border-bottom: 1px solid #dcdfe6;
+        &:hover{
+            background: #f7f7f7;
+        }
+    }
+}
+
+//查看时溢出显示样式
+.msgTip{
+    padding: 0 !important;
+    border: none !important;
+    width: 200px; 
+    overflow: hidden;
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+    background: none !important;
+    &:hover{
+        background: none !important;
+    }
+}
+
+//查看strong标签样式
+.strongTip {
+    display:inline-block;
+    max-width: 95%;
+//    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+//    padding: 0 10px;
+    border-radius: 3px;
+}
+
+//查看strong标签样式--换行
+.strongTipWrap{
+    border:1px solid #ccc; 
+    word-break: break-all;
+    height: 100px;
+    overflow-y: auto;
+    display: inline-block;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+//查看strong标签样式--换行没有滚动条
+.strongTipWrapNoScoll{
+    word-break: break-all;
+    display: inline-block;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+//toolTip样式
+.el-tooltip__popper.is-dark {
+    word-wrap: break-word;
+    max-width: 500px;
+    word-break: break-all;
+    line-height: 20px;
+}
+//角色下拉选择，item太长
+.el-select .el-tag {
+    display: inline-flex;
+    align-items: center;
+}
+
+.el-select__tags-text {
+    display: inline-block;
+	max-width: 95px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.el-select-dropdown__item span {
+    padding-right: 15px;
+}
+.el-tree-node>.el-tree-node__children{
+    //overflow: inherit !important;
+    min-width: 100%;
+}
+
+.dialog_input {
+    .description .el-form-item__content{
+        width: 490px;
+        textarea{
+            height: 100px;
+        }
+    }
+    .el-input{
+        @at-root & {
+            @media all and (max-width: 1400px)  {
+                & {
+                    width: 160px;
+                }
+            }
+        }
+    }
+}
+
+.role_dialog {
+    .el-input, .el-form-item__content{
+        width: 330px !important;
+    }
+}
+
+
+.formButton{
+  padding: 20px 0px;
+  text-align:right;
+}

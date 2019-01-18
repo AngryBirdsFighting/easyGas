@@ -1,0 +1,203 @@
+/**
+ * @Author:      qinbb
+ * @DateTime:    2018-01-31 16:57:29
+ * @Description: 按钮公共的样式修改  以$开头的是自定义参数
+ * @include:scss语法  调用mixin的colorBtn方法
+ */
+$blue:#324157;
+$light-blue:#3A71A8;
+$red:#C03639;
+$pink: #E65D6E;
+$green: #30B08F;
+$tiffany: #4AB7BD;
+$yellow:#FEC171;
+$violet:#67d3e0;
+
+$panGreen: #30B08F;
+
+@mixin colorBtn($color) {
+  background: $color;
+  &:hover {
+    color: $color;
+    border-color: $color;
+    &:before, &:after {
+      background: $color;
+    }
+  }
+}
+
+
+.blue-btn {
+  @include colorBtn($blue)
+}
+
+.light-blue-btn{
+  @include colorBtn($light-blue)
+}
+
+
+.red-btn {
+  @include colorBtn($red)
+}
+
+.pink-btn {
+  @include colorBtn($pink)
+}
+
+.green-btn {
+  @include colorBtn($green)
+}
+
+
+.tiffany-btn {
+  @include colorBtn($tiffany)
+}
+
+
+.yellow-btn {
+  @include colorBtn($yellow)
+}
+
+.violet-btn {
+    @include colorBtn($violet)
+}
+
+.pan-btn {
+  font-size: 14px;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin-right: 25px;
+  -webkit-transition: 600ms ease all;  //css3 有些浏览器不支持 Chrome || Safari
+  -moz-transition: 600ms ease all;  //css3 有些浏览器不支持 Firefox 
+  -ms-transition: 600ms ease all;//css3 有些浏览器不支持 IE
+  -o-transition: 600ms ease all;//css3 有些浏览器不支持 Opera
+  position: relative;
+  display: inline-block;
+  &:hover {
+    background: #fff;
+    &:before, &:after {
+      width: 100%;
+      -webkit-transition: 600ms ease all;  //css3 有些浏览器不支持 Chrome || Safari
+      -moz-transition: 600ms ease all;  //css3 有些浏览器不支持 Firefox 
+      -ms-transition: 600ms ease all;//css3 有些浏览器不支持 IE
+      -o-transition: 600ms ease all;//css3 有些浏览器不支持 Opera
+    }
+  }
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    -webkit-transition: 400ms ease all;  //css3 有些浏览器不支持 Chrome || Safari
+    -moz-transition: 400ms ease all;  //css3 有些浏览器不支持 Firefox 
+    -ms-transition: 400ms ease all;//css3 有些浏览器不支持 IE
+    -o-transition: 400ms ease all;//css3 有些浏览器不支持 Opera
+  }
+  &::after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.custom-button{
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    color: #fff;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.btn{
+    width: 22px !important;
+    height: 24px !important;
+    padding: 0 !important;
+    border: none !important;
+}
+.el-button+.el-button{
+    margin-left: 5px;
+}
+
+.check{background: url(../img/check.png) no-repeat center center !important;}
+.resources{background: url(../img/resources.png) no-repeat center center !important;}
+.update{background: url(../img/update.png) no-repeat center center !important;}
+.stop{background: url(../img/stop.png) no-repeat center center !important;}
+.play{background: url(../img/play.png) no-repeat center center !important;}
+.pass{background: url(../img/password.png) no-repeat center center !important;}
+.delete{background: url(../img/delete.png) no-repeat center center !important;}
+.dict{background: url(../img/dict.png) no-repeat center center !important;}
+.role{background: url(../img/role.png) no-repeat center center !important;}
+.rules{background: url(../img/rules.png) no-repeat center center !important;}
+//视频按钮
+.videoBtn{width: 24px;height: 30px;padding: 7px 15px !important;vertical-align: middle;border: none;}
+.videoBtn:hover{background-color: none;}
+.video-photo{background: url(../img/photo.png) no-repeat center center !important;}//抓拍
+.video-play{background: url(../img/video-play.png) no-repeat center center !important;}//播放
+.video-stop{background: url(../img/video-stop.png) no-repeat center center !important;}//暂停
+.video-novoice{background: url(../img/no-voice.png) no-repeat center center !important;}//静音
+.video-voice{background: url(../img/voice.png) no-repeat center center !important;}//开启音量
+.video-screen{background: url(../img/full-screen.png) no-repeat center center !important;}//全屏
+.video-noscreen{background: url(../img/nofull-screen.png) no-repeat center center !important;}//退出全屏
+.fastForward{background: url(../img/fastForward.png) no-repeat center center !important;}//快进
+.fastBack{background: url(../img/fastBack.png) no-repeat center center !important;}//快退
+
+.download{background: url(../img/backVideo-download.png) no-repeat center center !important;}//工单管理下载
+.backVideo-play{background: url(../img/backVideo-play.png) no-repeat center center !important;}//工单管理播放
+.backVideo-stop{background: url(../img/backVideo-stop.png) no-repeat center center !important;}//工单管理暂停
+
+//基站信号图片
+.simSignalIconClass {
+  margin-left: 10px;
+  display: inline-block;
+  width: 22px;
+  height: 18px;
+  vertical-align: middle;
+}
+.simSignalIconClass_0
+{
+  background: url(../img/simSignal0.png);
+}
+.simSignalIconClass_1
+{
+  background: url(../img/simSignal1.png);
+}
+.simSignalIconClass_2
+{
+  background: url(../img/simSignal2.png);
+}
+.simSignalIconClass_3
+{
+  background: url(../img/simSignal3.png);
+}
+.simSignalIconClass_4
+{
+  background: url(../img/simSignal4.png);
+}
+.simSignalIconClass_5
+{
+  background: url(../img/simSignal5.png);
+}
+
+.satelliteIcon {
+  margin: 0 10px 0 15px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background: url(../img/satellite.png);
+}

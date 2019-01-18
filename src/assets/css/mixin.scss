@@ -1,0 +1,205 @@
+/**
+ * @Author:      qinbb
+ * @DateTime:    2018-01-31 17:04:37
+ * @Description: sass中使用 @mixin声明混合，可以传递参数，参数名以$符号开始，多个参数以逗号分开，
+ * 也可以给参数设置默认值。声明的 @mixin通过 @include来调用。
+ * mixin在不调用的情况下是不会生成任何css样式的，调用的时候也只是输出到调用位置
+ */
+
+ //-----------------------------------清除浮动-----------------------------------------  
+ @mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin pct($pct) {
+  width: #{$pct};
+  position: relative;
+  margin: 0 auto;
+}
+
+//-----------------------------------正三角-----------------------------------------  
+@mixin triangle($width, $height, $color, $direction) {
+  $width: $width/2;
+  $color-border-style: $height solid $color;
+  $transparent-border-style: $width solid transparent;
+  height: 0;
+  width: 0;
+  //向上  
+  @if $direction==up {
+    border-bottom: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  //向右  
+  @else if $direction==right {
+    border-left: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
+  //向下
+  @else if $direction==down {
+    border-top: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  //向左
+  @else if $direction==left {
+    border-right: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
+}
+
+/*字体大小*/
+$fontSize12: 12px;
+$fontSize14: 14px;
+$fontSize16: 16px;
+
+/*字体、背景颜色*/
+$blueColor: #306ab9;
+$bodyBackgroundColor: #e9ecf3;
+$HeaderBackgroundColor: #67d3e0;
+$navBackgroundColor: #ffffff;
+$mainBackgroundColor: #f9f9f9;
+$themeColor: #67d3e0;
+body{
+  background: $bodyBackgroundColor;
+}
+/*搜索框的样式*/
+.el-input{
+    width: 160px;
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                width: 110px;
+                input{
+                    font-size: 12px;
+                    padding: 0 5px;
+                }
+            }
+        }
+    }
+}
+.el-input.is-disabled,
+.el-input__inner{
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+}
+.el-range-editor.el-input__inner{padding: 0 5px;}
+.el-date-editor .el-range-input, .el-date-editor .el-range-separator{height: 24px;}
+.el-button{
+    padding: 7px 20px;
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                padding: 7px 10px;
+                i, span{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+.filter-container{
+    border: 1px solid #e9e9e9;
+    padding: 15px 15px 0 15px;
+    margin-bottom: 15px;
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                padding: 15px 8px 0 8px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+.el-form-item{
+    margin-bottom: 20px;
+}
+.filter-container .el-form-item{
+    margin-bottom: 5px;
+    @at-root & {
+        @media all and (max-width: 1400px)  {
+            & {
+                margin-right: 3px;
+            }
+        }
+    }
+}
+/*鼠标变手型*/
+@mixin cursor{
+   cursor: pointer;
+}
+
+/*圆角*/
+@mixin borderRadius{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+@mixin border{
+    border: 1px solid #cacaca;
+}
+
+@mixin height($height){
+    height: $height;
+    line-height: $height;
+}
+
+/*阴影
+ * 参数(水平阴影的位置,垂直阴影的位置,模糊距离,阴影的尺寸,阴影的颜色)
+ * */
+@mixin boxShadow($h-shadow, $v-shadow, $blur, $spread, $scolor){
+    -moz-box-shadow: $h-shadow $v-shadow $blur $spread $scolor;
+    -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $scolor;
+    box-shadow: $h-shadow $v-shadow $blur $spread $scolor;
+}
+
+/*设置尺寸(宽, 高)*/
+@mixin size($width, $height){
+    width: $width;
+    height: $height;
+}
+
+/*设置按钮颜色*/
+@mixin btnColor($btncolor, $btn-hover-color){
+    background-color: $btncolor;
+    border-color: $btncolor;
+    &:hover{
+        background-color: $btn-hover-color;
+        border-color: $btn-hover-color;
+    }
+    &:focus {
+            background-color: $btncolor;
+            border-color: $btncolor;
+        }
+    &:active{
+        background-color: $btncolor;
+        border-color: $btncolor;
+    }
+}
