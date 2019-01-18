@@ -16,17 +16,17 @@
 					<el-input v-model="listQuery.carNum" placeholder="请输入车牌号" clearable></el-input>
 				</el-form-item> -->
 				<el-form-item label="住户编号">
-					<el-input v-model="listQuery.equImei" placeholder="请输入住户编号" clearable></el-input>
+					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编号" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="条形码">
-					<el-input v-model="listQuery.equImei" placeholder="请输入条形码" clearable></el-input>
+					<el-input v-model="listQuery.barCode" placeholder="请输入条形码" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="上报时间" >
-					<date-time-picker ref="datePicker" :isTodayBefore="true"></date-time-picker>
+					<date-time-picker ref="dateTimePicker" :isTodayBefore="true"></date-time-picker>
 				</el-form-item>
 				
 				<el-form-item>
-					<el-button class="filter-item btnColor" type="primary" icon="el-icon-search" @click="(getList(true))">查询</el-button>
+					<el-button class="filter-item btnColor" type="primary" icon="el-icon-search" @click="search">查询</el-button>
 				</el-form-item>
 				<el-form-item>
 					<el-button v-if="permBtn.car_add" class="filter-item btnColor" type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
@@ -512,7 +512,7 @@
 				list:[], //表格list
 				total: 0,
 				driverTotal: 0,
-				listLoading: true,
+				listLoading: false,
 				height: 540,
 				deptList: [], //组织机构树数据
 				deptNames: "", //部门显示的名称
@@ -520,12 +520,10 @@
 				listQuery: {
 					iDisplayLength: 10,
 					iDisplayStart: 0,
-					powerType: "",
-					useType: "",
-					driverName: "",
-					deptId: "",
-					carNum: "",
-					equImei: "",//设备imei
+					householdCode: "",
+					barCode: "",
+					startTime:"",
+					endTime: ""
 				},
 				//驾驶员列表查询参数
 				driverListQuery: {
@@ -694,7 +692,7 @@
 		mounted() {
 			var vm = this;
 			// vm.getPerm();
-			vm.getList();
+			// vm.getList();
 			vm.getDictionaries();
 			this.$nextTick(function(){
 				utils.getTableHeight((height)=>{
@@ -752,6 +750,14 @@
 		        }).catch(error => {
 		        	vm.listLoading = false;
 		        });
+			},
+			search(){
+				const dateTime = this.$refs.dateTimePicker.dateTimePicker
+				if(dateTime){
+					this.listQuery.startTime = dateTime[0];
+					this.listQuery.endTime = dateTime[1]
+				}
+				this.getList()
 			},
 			//获取字典
 			getDictionaries() {

@@ -16,10 +16,10 @@
 					<el-input v-model="listQuery.carNum" placeholder="请输入车牌号" clearable></el-input>
 				</el-form-item> -->
 				<el-form-item label="住户姓名">
-					<el-input v-model="listQuery.equImei" placeholder="请输入设备IMEI" clearable></el-input>
+					<el-input v-model="listQuery.name" placeholder="请输入用户名" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="住户电话">
-					<el-input v-model="listQuery.equImei" placeholder="请输入设备IMEI" clearable></el-input>
+					<el-input v-model="listQuery.phone" placeholder="请输入电话" clearable></el-input>
 				</el-form-item>
 				<!-- <el-form-item label="小区">
 					<el-select v-model="listQuery.powerType" clearable placeholder="请选择燃油类型">
@@ -525,12 +525,8 @@
 				listQuery: {
 					iDisplayLength: 10,
 					iDisplayStart: 0,
-					powerType: "",
-					useType: "",
-					driverName: "",
-					deptId: "",
-					carNum: "",
-					equImei: "",//设备imei
+					phone: "",
+					name: "",
 				},
 				//驾驶员列表查询参数
 				driverListQuery: {
