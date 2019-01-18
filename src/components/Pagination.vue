@@ -5,7 +5,7 @@
  */
 <template>
     <div class="pagination-container">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currPage" :page-sizes="[2,10,20,30,50]" 
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currPage" :page-sizes="[10,20,30,50]" 
         :page-size="callBackData.iDisplayLength" layout="total, sizes, prev, pager, next, jumper" :total="total">
 	    </el-pagination>
     </div>
@@ -21,7 +21,7 @@
                 currPage: (this.total == 0) ? 0 :1,
                 callBackData: {
                     iDisplayStart: 0,
-                    iDisplayLength: 2
+                    iDisplayLength: 10
                 }
             };
         },
