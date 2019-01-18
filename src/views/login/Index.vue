@@ -33,21 +33,21 @@
 					<el-input prefix-icon="icon-c-qiyexinxi" name="entCode" v-model="loginForm.entCode" type="text"  autoComplete="off" placeholder="企业标识" style="width:100%;" clearable></el-input>
 				</el-form-item> -->
 				<el-form-item prop="account">
-					<el-input  prefix-icon="icon-c-yonghu" name="account" v-model="loginForm.account" type="text"   autoComplete="off" placeholder="账号：admin" style="width: 100%;" clearable></el-input>
+					<el-input  prefix-icon="icon-c-yonghu" name="account" v-model="loginForm.account" type="text"   autoComplete="off" placeholder="admin" style="width: 100%;" clearable></el-input>
 				</el-form-item>
 				<el-form-item prop="password">
-					<el-input  prefix-icon="icon-c-mima" name="password" v-model="loginForm.password" type="password"   autoComplete="off" placeholder="密码：admin123456" style="width: 100%;" clearable></el-input>
+					<el-input  prefix-icon="icon-c-mima" name="password" v-model="loginForm.password" type="password"   autoComplete="off" placeholder="gas@qaz" style="width: 100%;" clearable></el-input>
 				</el-form-item>
-				<el-form-item prop="identifyCode">
+				<!-- <el-form-item prop="identifyCode">
 				    <el-input  prefix-icon="icon-c-anquan" name="identifyCode" v-model="loginForm.identifyCode" @keyup.enter.native.prevent="handleLogin" style="width:145px;" placeholder="验证码" clearable></el-input>
 				    <img class="yz-img" :src= "loginForm.imgSrc" @click="changeCode" />
 				    <el-button class="code-btn" size="mini" @click.native.prevent="changeCode" round>换一组</el-button>
-				</el-form-item>
+				</el-form-item> -->
 				<el-form-item class="sub-btn">
 					<el-button type="primary" @click.native.prevent="handleLogin" :loading="logining">{{logining ? "登录中..." : "登 录"}}</el-button>
 				</el-form-item>
 				<el-checkbox v-model="loginForm.checked">记住密码</el-checkbox>
-				<el-button type="primary" class="forget-pass" @click.native.prevent="sendPassFormVisible = true">忘记密码</el-button>
+				<!-- <el-button type="primary" class="forget-pass" @click.native.prevent="sendPassFormVisible = true">忘记密码</el-button> -->
 			</div>
 		</el-form>
 		
@@ -267,8 +267,7 @@
 					if(formData.validates){
 						formData.param.flags = true;
 						vm.logining = true;
-						debugger
-						if(formData.param.account != "admin" || formData.param.password != "admin123456"){
+						if(formData.param.account != "admin" || formData.param.password != "gas@qaz"){
 							Message.error("账号或密码错误");
 							vm.loginForm.identifyCode = "";
 							vm.logining = false;
@@ -550,6 +549,7 @@
 
 <style rel="stylesheet/scss" lang="scss">
 	@import "src/assets/css/mixin.scss";
+	
 	.login-container {
 		@include relative;
 		height: 100vh;
@@ -619,20 +619,22 @@
 	    .login-form {
 			position: absolute;
 			right: 18%;
-        	top: 25%;
+        	top: 32%;
 			.login-title {
-	            margin-bottom: 15px;
+	            margin-bottom: 20px;
 	            text-align: center;
 	        }
 	        .login-box {
 				width: 400px;
-				height: 425px;
 	            border-radius: 3px;
 	            @include boxShadow(0, 0, 5px, 3px, rgba(212, 212, 215, 0.8));
 	            background: #fff;
 	            padding: 30px 40px;
+				.el-form-item{
+					margin-bottom: 30px
+				}
 	            .el-input__inner{
-	            	height: 36px !important;
+	            	height: 45px !important;
 	            }
 	            input{
 	            	padding-left: 45px;
