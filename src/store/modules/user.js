@@ -181,18 +181,18 @@ const user = {
 				//调用接口
 				let param = {};
 				param.flags = true;
-				instance.post('/proxy/auth/logout', param).then(res => {
-					if(res.status == 200 && res.data.success) {
+				// instance.post('/proxy/auth/logout', param).then(res => {
+				// 	if(res.status == 200 && res.data.success) {
 						Cookies.remove('refresh');//移除cookies的refresh  是否刷新
 						commit('SET_UID', ''); //修改用户
 						router.replace({
 							path: '/login'
 						});
 						resolve(); //异步操作成功
-					} else {
-						Message.error(res.data.errorMsg);
-					}
-				}).catch(error => {});
+				// 	} else {
+				// 		Message.error(res.data.errorMsg);
+				// 	}
+				// }).catch(error => {});
 			});
 		},
 		// 动态修改权限
