@@ -40,7 +40,7 @@
 					<el-button class="filter-item btnColor" type="primary" icon="el-icon-search" @click="(getList(true))">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button v-if="permBtn.car_add" class="filter-item btnColor" type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
+					<el-button v-if="!permBtn.car_add" class="filter-item btnColor" type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
 				</el-form-item>
 				<el-form-item>
 					<el-button v-if="permBtn.car_export" class="filter-item" type="primary" icon="el-icon-download" @click="exportFormLists">导出</el-button>
@@ -69,8 +69,10 @@
 					<div v-if="!scope.row.gasMeterType">--</div>
 				</template>
 			</el-table-column>
-			<el-table-column align="center" label="操作" width="150">
+			<el-table-column align="center" label="操作" width="250">
 				<template slot-scope="scope">
+					<el-button  class="fl" size="small" type="primary" @click="closeCmd(scope.$index, scope.row)">关阀</el-button>
+					<el-button  class="fl" size="small" type="danger" @click="openCmd(scope.$index, scope.row)">开阀</el-button>
 					<el-button  class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
 					<el-button  class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
 					<el-button  class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
@@ -508,7 +510,7 @@ import { debug } from 'util';
 				deptNames: "", //部门显示的名称
 				//列表查询参数
 				listQuery: {
-					iDisplayLength: 2,
+					iDisplayLength: 10,
 					iDisplayStart: 0,
 					name: "",
 					idNumber:"",
@@ -710,6 +712,41 @@ import { debug } from 'util';
 			}
 		},
 		methods: {
+			// 开关阀门
+			closeCmd(index, row) {
+				let vm = this;
+				let param = {};
+				param.deviceNbid = row.deviceNbid;
+				param.deviceId = row.deviceId;
+				param.barCode = row.barCode;
+				param.cmd = 'close';
+				vm.$instance.post("/proxy/cmd/down", param).then(res =>{	
+		          	if(res.status == 200){
+						Message.success({message:"阀门已关"});
+		            }else{
+		                Message.error({message:"调用接口失败"});
+		            }
+		        }).catch(error => {
+		        	vm.listLoading = false;
+		        });
+			},
+			openCmd(index, row) {
+				let vm = this;
+				let param = {};
+				param.deviceNbid = row.deviceNbid;
+				param.deviceId = row.deviceId;
+				param.barCode = row.barCode;
+				param.cmd = 'open';
+				vm.$instance.post("/proxy/cmd/down", param).then(res =>{	
+		          	if(res.status == 200){
+						  Message.success({message:"阀门已开"});
+		            }else{
+		                Message.error({message:"调用接口失败"});
+		            }
+		        }).catch(error => {
+		        	vm.listLoading = false;
+		        });
+			},
 			//获取当前页面的权限
 			// getPerm(){
 			// 	this.permBtn = utils.permsButton(this);
@@ -876,6 +913,8 @@ import { debug } from 'util';
 			
 			//打开新增弹窗
 			handleCreate() {
+				Message.warning({message:"待开发！"});
+				return;
 				let obj = this.addCar;
 				for (const item in obj) {
 					if (obj.hasOwnProperty(item)) {
@@ -944,12 +983,16 @@ import { debug } from 'util';
 			},
 			//查看
 			check(index, row) {
+				Message.warning({message:"待开发！"});
+				return;
 				this.carInfo = null;
 				this.getCarData(row.carId);
 				this.checkFormVisible = true;
 			},
 			//删除
 			handleDelete(index, row) {
+				Message.warning({message:"待开发！"});
+				return;
 				if(row.driverName != null || row.equImei != null){
 					this.$message({
 			          	message: '此车辆被绑定，不能删除，请解绑后进行删除！',
@@ -996,6 +1039,8 @@ import { debug } from 'util';
 			},
 			//修改获取信息
 			handleEdit(index, row) {
+				Message.warning({message:"待开发！"});
+				return;
 			    for (var i in this.editCar){
 					this.editCar[i] = ""
 				};
