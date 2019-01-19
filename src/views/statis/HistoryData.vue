@@ -57,11 +57,11 @@
 					<div v-if="!scope.row.gasMeterType">--</div>
 				</template>
 			</el-table-column>
-			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure" width="110">
+			<el-table-column align="center" label="昨日用气量/L" prop="yesterdayGasMeasure">
 							<template slot-scope="scope">
 					<div v-if="!scope.row.gasMeterType">--</div>
 				</template></el-table-column>
-			<el-table-column align="center" label="累计用气量/L" prop="totalVolume" width="110">
+			<el-table-column align="center" label="累计用气量/L" prop="totalVolume">
 			</el-table-column>
 			<!-- <el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
