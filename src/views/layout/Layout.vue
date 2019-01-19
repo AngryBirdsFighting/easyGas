@@ -48,7 +48,7 @@
             }
             .app-container {
                 /*padding: 10px;//当菜单隐藏的时候  paddingleft为0*/
-                margin: 70px 10px 10px 20px;
+                margin: 10px 10px 10px 20px;
                 -webkit-transition: all .28s ease-out;  //css3 有些浏览器不支持 Chrome || Safari
                 -moz-transition: all .28s ease-out;  //css3 有些浏览器不支持 Firefox 
                 -ms-transition: all .28s ease-out;//css3 有些浏览器不支持 IE

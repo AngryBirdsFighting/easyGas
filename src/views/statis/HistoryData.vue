@@ -15,9 +15,9 @@
 				<!-- <el-form-item label="条形码">
 					<el-input v-model="listQuery.carNum" placeholder="请输入车牌号" clearable></el-input>
 				</el-form-item> -->
-				<!-- <el-form-item label="住户编号">
+				<el-form-item label="住户编号">
 					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编号" clearable></el-input>
-				</el-form-item> -->
+				</el-form-item>
 				<el-form-item label="条形码"  prop="barCode">
 					<el-input v-model="listQuery.barCode" placeholder="请输入条形码" clearable></el-input>
 				</el-form-item>
@@ -63,13 +63,13 @@
 				</template></el-table-column>
 			<el-table-column align="center" label="累计用气量/L" prop="totalVolume" width="110">
 			</el-table-column>
-			<el-table-column align="center" label="操作" width="150">
+			<!-- <el-table-column align="center" label="操作" width="150">
 				<template slot-scope="scope">
 					<el-button class="btn check" size="small" @click="check(scope.$index, scope.row)" title="查看"></el-button>
 					<el-button class="btn update" size="small" @click="handleEdit(scope.$index, scope.row)" title="修改"></el-button>
 					<el-button class="btn delete" size="small" @click="handleDelete(scope.$index, scope.row)" title="删除"></el-button>
 				</template>
-			</el-table-column>
+			</el-table-column> -->
 		</el-table>
 		
 		<!-- 分页 -->
@@ -528,6 +528,7 @@
 				listQuery: {
 					iDisplayLength: 10,
 					iDisplayStart: 0,
+					householdCode: "",
 					barCode: "",
 					startTime:"",
 					endTime: ""

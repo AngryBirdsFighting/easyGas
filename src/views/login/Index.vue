@@ -553,7 +553,7 @@
 	.login-container {
 		@include relative;
 		height: 100vh;
-		background: url('../../assets/img/login.jpg') no-repeat;
+		background: url('../../assets/img/login.png') repeat-y;
 		background-size: cover;
 		header {
 			@include height(100px);
@@ -617,14 +617,15 @@
 	        }
 	    }
 	    .login-form {
-			position: absolute;
-			right: 18%;
+			// position: absolute;
+			// right: 18%;
         	top: 32%;
 			.login-title {
 	            margin-bottom: 20px;
 	            text-align: center;
 	        }
 	        .login-box {
+				margin: 10% auto;
 				width: 400px;
 	            border-radius: 3px;
 	            @include boxShadow(0, 0, 5px, 3px, rgba(212, 212, 215, 0.8));
