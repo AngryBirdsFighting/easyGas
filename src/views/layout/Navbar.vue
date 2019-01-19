@@ -6,11 +6,11 @@
 <template>
     <div class="">
         <el-menu class="navbar" mode="horizontal">
-            <li class="fl logo">
+            <!-- <li class="fl logo">
                 <img v-if="userInfo.entLogo" :src="userInfo.entLogo" class="avatar">
                 <img v-else src="../../assets/img/logo.png"/>
                 <span>车联网业务平台</span> 
-            </li>
+            </li> -->
             <li class="fr nav_right">
             	<ul>
             		

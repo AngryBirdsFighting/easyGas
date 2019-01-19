@@ -19,7 +19,7 @@
 					<el-input v-model="listQuery.name" placeholder="请输入用户名" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="身份证号">
-					<el-input v-model="listQuery.idNumber" placeholder="请输入电话" clearable></el-input>
+					<el-input v-model="listQuery.idNumber" placeholder="请输入身份证号" clearable style="width:190px"></el-input>
 				</el-form-item>
 				<el-form-item label="住户编码">
 					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编码" clearable></el-input>

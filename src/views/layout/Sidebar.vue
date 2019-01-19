@@ -5,8 +5,9 @@
  */
  <template>
  <div>
-     <div class="logo">
-         LOGO
+     <div class="logo" style="border-bottom:1px solid #909399">
+         <img src="../../assets/img/logo.png" style="width:45px;margin-right:20px"/>
+         气表平台
      </div>
      <el-menu v-if="permission_routers.length != 0" mode="vertical" class="el-menu-vertical-demo" background-color="#253e55" text-color="#7d7d7d" active-text-color="red"  >
         <sidebar-item :routes='permission_routers' :perms='permission_perms'></sidebar-item>

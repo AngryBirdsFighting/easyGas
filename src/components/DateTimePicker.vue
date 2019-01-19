@@ -13,7 +13,7 @@
 		start-placeholder="开始日期" 
 		end-placeholder="结束日期" 
 		value-format="yyyy-MM-dd HH:mm:ss" 
-		align="left">
+		align="center">
 	</el-date-picker>
 </template>
 
