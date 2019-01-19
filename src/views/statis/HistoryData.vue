@@ -18,8 +18,8 @@
 				<el-form-item label="住户编号">
 					<el-input v-model="listQuery.householdCode" placeholder="请输入住户编号" clearable></el-input>
 				</el-form-item>
-				<el-form-item label="条形码"  prop="barCode">
-					<el-input v-model="listQuery.barCode" placeholder="请输入条形码" clearable></el-input>
+				<el-form-item label="条形码"  >
+					<el-input style="width:200px;" v-model="listQuery.barCode" placeholder="请输入条形码" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="上报时间" >
 					<date-time-picker ref="dateTimePicker" :isTodayBefore="true"></date-time-picker>
@@ -47,8 +47,8 @@
 		
 		<!-- 表格 -->
 		<el-table ref="multipleTable" :data="list" :height="height"  fit highlight-current-row v-loading="listLoading" element-loading-text="拼命加载中">
-			<el-table-column align="center" label='住户名' prop="name" width="130"></el-table-column>
-			<el-table-column align="center" label="电话" prop="phone" width="130"></el-table-column>
+			<el-table-column align="center" label='住户名' prop="name" ></el-table-column>
+			<el-table-column align="center" label="电话" prop="phone" ></el-table-column>
 		    <el-table-column align="center" label="小区" prop="villageName"></el-table-column>
 			<el-table-column align="center" label="条形码" prop="barCode"></el-table-column>
 			<el-table-column align="center" label="采集时间" prop="curTimestamp"></el-table-column>
@@ -766,22 +766,17 @@
 		        });
 			},
 			search(formName){
-				debugger	
-				validate.isValidate(this, formName, (formData)=>{
-					if(formData.validates){
+				if(this.listQuery.barCode == ""  &&  this.listQuery.householdCode == ""){
+					Message.error({message:"住户编号和条形码请填写一个"});
+				}
 						const dateTime = this.$refs.dateTimePicker.dateTimePicker;
 						if(dateTime){
 							this.listQuery.startTime = dateTime[0];
 							this.listQuery.endTime = dateTime[1];
 						 this.getList()
 						}else{
- Message.error({message:"请选择时间"});
+                          Message.error({message:"请选择时间"});
 						}
-				     
-					}
-					this.isValidate.isOk = false;
-				},this.listQuery);
-				
 			},
 			//获取字典
 			getDictionaries() {
